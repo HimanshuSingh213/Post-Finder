@@ -11,155 +11,361 @@
 <body>
     <div class="page-container">
         <div class="section1">
-        <div class="navbar">
-            <ul>
-                <li><a href="" id="logo">PostFinder <span>®</span></a></li>
-                <li><a href="">Home</a></li>
-                <li><a href="">How it works</a></li>
-                <li><a href="">FAQ</a></li>
-                <li><a href="">Contacts</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="welcomeCard">
-        <div class="corner-box"><span></span></div>
-        <h1>Find Post Offices Near You.</h1>
-        <h1>Enter your Pincode or Area to get Details</h1>
-        <span>
-            <button class="search">Search Now</button>
-        </span>
-    </div>
-    <div class="searching" hidden>
-        <div class="byPincode">
-            <label for="pincode">Enter Pincode:  </label>
-            <input type="text" id="pincode"> 
-        </div>
-        <span>OR</span>
-    <div class="byArea">
-
-    </div>
-    </div>
-    <div class="infoBox">
-        <ul>
-            <li>
-                <img src="" alt="">
-                <p>Search by</p>
-                <h3>Pincode or Place</h3>
-            </li>
-            <li>
-                <img src="" alt="">
-                <p>Find</p>
-                <h3>Nearby Post Office</h3>
-            </li>
-            <li>
-                <img src="" alt="">
-                <p>Get Details</p>
-                <h3>Related info</h3>
-            </li>
-        </ul>
-    </div>
-    <div class="working">
-        <h3>How it Works</h3>
-        <p>Type your area pincode or simply enter your locality name to instantly discover all nearby post offices. Each
-            result neatly displays details like address, pincode, circle, district, division, branch type, and state
-            making it easy to find exactly what you need at a glance.
-        </p>
-    </div>
-    <div class="genImg">
-        <img src="" alt="">
-    </div>
-    <div class="faq">
-        <h3>FAQ</h3>
-        <ol>
-            <li>
-                <div class="q1 q">
-                    <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">What details can I see about
-                    each post office?
-                </div>
-                <div class="ans1 ans" hidden>
-                    You can view complete information for each nearby post office, including its name, pincode, circle,
-                    district, division, branch type, and state.
-                </div>
-            </li>
-            <li>
-                <div class="q2 q">
-                    <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">How accurate are the
-                    locations?
-                </div>
-                <div class="ans2 ans" hidden>
-                    The locations are sourced directly from official India Post data, ensuring high accuracy based on
-                    your entered pincode and nearby areas.
-                </div>
-            </li>
-            <li>
-                <div class="q3 q">
-                    <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">Is this service free to use?
-                </div>
-                <div class="ans3 ans" hidden>
-                    Yes, using our website to find the nearest post office by pincode is completely free.
-                </div>
-            </li>
-            <li>
-                <div class="q4 q">
-                    <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">Can I search by area name
-                    instead of pincode?
-                </div>
-                <div class="ans4 ans" hidden>
-                    Yes, you can type your area or locality name to find all nearby post offices, making the search
-                    flexible and easy.
-                </div>
-            </li>
-            <li>
-                <div class="q5 q">
-                    <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">How up-to-date is the post
-                    office data?
-                </div>
-                <div class="ans5 ans" hidden>
-                    Our data is regularly synced with official India Post records to ensure you always get accurate and
-                    current information.
-                </div>
-            </li>
-            <li>
-                <div class="q6 q">
-                    <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">What if I can’t find a post
-                    office in my area?
-                </div>
-                <div class="ans6 ans" hidden>
-                    Double-check the pincode or area name you entered. If it’s correct and still not showing, it may be
-                    a new or remote branch not yet updated in the official data.
-                </div>
-            </li>
-            <li>
-                <div class="q7 q">
-                    <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">Can I save or share the post
-                    office details?
-                </div>
-                <div class="ans7 ans" hidden>
-                    Currently, you can copy the details manually to share or save for reference. Future updates may
-                    include direct sharing options.
-                </div>
-            </li>
-        </ol>
-    </div>
-    <div class="footerObj">
-        <footer>
-            <div class="logo" id="logo">
-                PostFinder <span>®</span>
+            <div class="navbar">
+                <ul>
+                    <li><a href="" id="logo">PostFinder <span>®</span></a></li>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">How it works</a></li>
+                    <li><a href="">FAQ</a></li>
+                    <li><a href="">Contacts</a></li>
+                </ul>
             </div>
+        </div>
+        <div class="welcomeCard">
+            <div class="corner-box"><span></span></div>
+            <h1>Find Post Offices Near You.</h1>
+            <h1>Enter your Pincode or Area to get Details</h1>
+            <span>
+                <button class="search">Search Now</button>
+            </span>
+        </div>
+        <div class="overlay" hidden>
+
+        </div>
+        <div class="searching" hidden>
+            <div class="drawer">
+                .............................
+            </div>
+            <div class="minimizer">
+                x
+            </div>
+            <div class="head1">
+                <h3>Search Office</h3>
+                <h4>Find your nearest Office by Pincode or area name</h4>
+            </div>
+            <div class="slidingBar">
+                <div class="slider"></div>
+                <div class="byPinOption">
+                    <p>#&nbsp;&nbsp;By Pincode</p>
+                </div>
+                <div class="byAreaOption">
+                    <p><span><img src="map-pin-thin-svgrepo-com.svg" alt="" height="20px"></span>&nbsp;&nbsp;By Area
+                    </p>
+                </div>
+            </div>
+            <div class="byPincode">
+                <p>Enter Pincode</p>
+                <input type="text" id="pincode" placeholder="e.g., 110001">
+                <div class="submitPin">
+                    <p><img src="search-1020-32.png" alt="">&nbsp;&nbsp;Search by Pincode</p>
+                </div>
+
+                <div class="popularPin">
+                    <p>Popular Pincodes</p>
+                    <ul>
+                        <li>110001</li>
+                        <li>400001</li>
+                        <li>560001</li>
+                        <li>700001</li>
+                        <li>600001</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="byArea" hidden>
+                <p>Enter Area Name</p>
+                <input type="text" id="area" placeholder="e.g., Connaught Place,Delhi">
+                <div class="submitArea">
+                    <p><img src="search-1020-32.png" alt="">&nbsp;&nbsp;Search by Area</p>
+                </div>
+
+                <div class="popularArea">
+                    <p>Popular Areas</p>
+                    <ul>
+                        <li>Connaught Place</li>
+                        <li>Bandra West</li>
+                        <li>Koramangala</li>
+                        <li>Park Street</li>
+                        <li>T Nagar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="infoBox">
             <ul>
-                <h4>About</h4>
-                <li><a href="">How it works</a></li>
-                <li><a href="">Accuracy</a></li>
-                <li><a href="">FAQ</a></li>
+                <li>
+                    <div class="imgBack">
+                        <img src="pincode-place.png" alt="">
+                    </div>
+                    <p>Search by</p>
+                    <h3>Pincode or Place</h3>
+                </li>
+                <li>
+                    <div class="imgBack">
+                        <img src="nearby post office.png" alt="">
+                    </div>
+                    <p>Find</p>
+                    <h3>Nearby Post Office</h3>
+                </li>
+                <li>
+                    <div class="imgBack">
+                        <img src="get details.png" alt="">
+                    </div>
+                    <p>Get Details</p>
+                    <h3>Related info</h3>
+                </li>
             </ul>
-            <ul>
-                <h4>Contact</h4>
-                <li><a href="">Support</a></li>
-                <li><a href="">Feedback</a></li>
-                <li><a href="">Terms of Use</a></li>
-            </ul>
-        </footer>
-    </div>
+        </div>
+        <div class="working">
+            <h3>How it Works</h3>
+            <p>Type your area pincode or simply enter your locality name to instantly discover all nearby post offices.
+                Each
+                result neatly displays details like address, pincode, circle, district, division, branch type, and state
+                making it easy to find exactly what you need at a glance.
+            </p>
+        </div>
+        <div class="genImg">
+            <img src="Poster (1).jpg" alt="">
+        </div>
+        <div class="faq">
+            <h3>FAQ</h3>
+            <ol>
+                <li>
+                    <div class="q1 q">
+                        <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">What details can I see
+                        about
+                        each post office?
+                    </div>
+                    <div class="ans1 ans" hidden>
+                        You can view complete information for each nearby post office, including its name, pincode,
+                        circle,
+                        district, division, branch type, and state.
+                    </div>
+                </li>
+                <li>
+                    <div class="q2 q">
+                        <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">How accurate are the
+                        locations?
+                    </div>
+                    <div class="ans2 ans" hidden>
+                        The locations are sourced directly from official India Post data, ensuring high accuracy based
+                        on
+                        your entered pincode and nearby areas.
+                    </div>
+                </li>
+                <li>
+                    <div class="q3 q">
+                        <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">Is this service free to
+                        use?
+                    </div>
+                    <div class="ans3 ans" hidden>
+                        Yes, using our website to find the nearest post office by pincode is completely free.
+                    </div>
+                </li>
+                <li>
+                    <div class="q4 q">
+                        <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">Can I search by area name
+                        instead of pincode?
+                    </div>
+                    <div class="ans4 ans" hidden>
+                        Yes, you can type your area or locality name to find all nearby post offices, making the search
+                        flexible and easy.
+                    </div>
+                </li>
+                <li>
+                    <div class="q5 q">
+                        <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">How up-to-date is the
+                        post
+                        office data?
+                    </div>
+                    <div class="ans5 ans" hidden>
+                        Our data is regularly synced with official India Post records to ensure you always get accurate
+                        and
+                        current information.
+                    </div>
+                </li>
+                <li>
+                    <div class="q6 q">
+                        <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">What if I can’t find a
+                        post
+                        office in my area?
+                    </div>
+                    <div class="ans6 ans" hidden>
+                        Double-check the pincode or area name you entered. If it’s correct and still not showing, it may
+                        be
+                        a new or remote branch not yet updated in the official data.
+                    </div>
+                </li>
+                <li>
+                    <div class="q7 q">
+                        <img src="icons8-plus-symbol-24.png" alt="" height="15px" width="15px">Can I save or share the
+                        post
+                        office details?
+                    </div>
+                    <div class="ans7 ans" hidden>
+                        Currently, you can copy the details manually to share or save for reference. Future updates may
+                        include direct sharing options.
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <div class="footerObj">
+            <footer>
+                <div class="logo" id="logo">
+                    PostFinder <span>®</span>
+                </div>
+                <ul>
+                    <h4>About</h4>
+                    <li><a href="">How it works</a></li>
+                    <li><a href="">Accuracy</a></li>
+                    <li><a href="">FAQ</a></li>
+                </ul>
+                <ul>
+                    <h4>Contact</h4>
+                    <li><a href="">Support</a></li>
+                    <li><a href="">Feedback</a></li>
+                    <li><a href="">Terms of Use</a></li>
+                </ul>
+            </footer>
+        </div>
+        <!-- <div class="afterSearching" >
+            <div class="result">
+                <div class="backSvg">
+                    <img src="back-arrow-direction-down-right-left-up-svgrepo-com.svg" alt="" height="20px">
+                </div>
+                <div class="target">
+                    <h3>Search Results</h3>
+                    <h4 hidden>Pincode: <p class="targetpin"></p>
+                    </h4>
+                    <h4>Area: <p class="targetplace"></p>
+                    </h4>
+
+                </div>
+            </div>
+            <div class="resultItem" >
+
+                <h4>Found&nbsp;<p id="postOfficeArray"></p>&nbsp;post offices</h4>
+                <ul>
+                    <li>
+                        <template class="resultContainer  resultContainer1">
+
+                            <h5 id="postOfficeName">Connaught Place Head Post Office</h5>
+                            <ul class="properties">
+                                <li class="targetpin property1">400001</li>
+                                <li class="branchType property2">Head Post Office</li>
+                                <li class="deliveryStatus property3">Delivery</li>
+                            </ul>
+                            <div class="officeDetail">
+                                <ul>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-building2 lucide-building-2 w-4 h-4 text-red-600"
+                                            aria-hidden="true">
+                                            <path d="M10 12h4"></path>
+                                            <path d="M10 8h4"></path>
+                                            <path d="M14 21v-3a2 2 0 0 0-4 0v3"></path>
+                                            <path
+                                                d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2">
+                                            </path>
+                                            <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+                                        </svg>
+                                        <div class="nameValue">
+                                            <h4>Branch Type</h4>
+                                            <h4 class="branchType value1">Head Post Office</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-truck w-4 h-4 text-red-600" aria-hidden="true">
+                                            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
+                                            <path d="M15 18H9"></path>
+                                            <path
+                                                d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14">
+                                            </path>
+                                            <circle cx="17" cy="18" r="2"></circle>
+                                            <circle cx="7" cy="18" r="2"></circle>
+                                        </svg>
+                                        <div class="nameValue">
+                                            <h4>Delivery Status</h4>
+                                            <h4 class="branchType value1">Delivery</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-globe w-4 h-4 text-red-600" aria-hidden="true">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                            <path d="M2 12h20"></path>
+                                        </svg>
+                                        <div class="nameValue">
+                                            <h4>Circle</h4>
+                                            <h4 class="branchType value1">Delhi</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-map w-4 h-4 text-red-600" aria-hidden="true">
+                                            <path
+                                                d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z">
+                                            </path>
+                                            <path d="M15 5.764v15"></path>
+                                            <path d="M9 3.236v15"></path>
+                                        </svg>
+                                        <div class="nameValue">
+                                            <h4>Region</h4>
+                                            <h4 class="branchType value1">Delhi</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-box w-4 h-4 text-red-600" aria-hidden="true">
+                                            <path
+                                                d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z">
+                                            </path>
+                                            <path d="m3.3 7 8.7 5 8.7-5"></path>
+                                            <path d="M12 22V12"></path>
+                                        </svg>
+                                        <div class="nameValue">
+                                            <h4>Division</h4>
+                                            <h4 class="branchType value1">New Delhi Central</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-map-pinned w-4 h-4 text-red-600" aria-hidden="true">
+                                            <path
+                                                d="M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0">
+                                            </path>
+                                            <circle cx="12" cy="8" r="2"></circle>
+                                            <path
+                                                d="M8.714 14h-3.71a1 1 0 0 0-.948.683l-2.004 6A1 1 0 0 0 3 22h18a1 1 0 0 0 .948-1.316l-2-6a1 1 0 0 0-.949-.684h-3.712">
+                                            </path>
+                                        </svg>
+                                        <div class="nameValue">
+                                            <h4>State</h4>
+                                            <h4 class="branchType value1">Delhi</h4>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </template>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
     </div>
     <script src="post.js"></script>
 </body>

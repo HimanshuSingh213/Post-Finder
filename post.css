@@ -9,7 +9,8 @@
 }
 
 
-html, body {
+html,
+body {
     margin: 0 !important;
     padding: 0 !important;
     border: 0 !important;
@@ -39,6 +40,7 @@ body {
     flex-direction: column;
     width: 100%;
     min-height: 100vh;
+    position: relative;
 }
 
 /* width of custom scrollbar */
@@ -82,7 +84,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 64px;
-    background: rgba(255, 255, 255, 0.900);
+    background: rgba(255, 255, 255, 0.950);
     border-bottom: 0.2px solid rgb(215, 215, 215);
     border-image: linear-gradient(90deg, #ff6a00, #ff0066) 1;
     z-index: 100;
@@ -125,7 +127,7 @@ body {
     font-size: 15px;
 }
 
-.navbar ul li a:hover{
+.navbar ul li a:hover {
     font-weight: 700;
 }
 
@@ -149,7 +151,8 @@ body {
     width: 90%;
     height: 500px;
     gap: 2px;
-    background-color: rgba(255, 218, 218, 0.266);
+    background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+        url("https://www.shutterstock.com/image-vector/background-bandung-map-indonesia-white-600nw-2323837127.jpg");
     transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
 
 }
@@ -181,6 +184,7 @@ body {
     border: none;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+    z-index: 1000000;
 }
 
 /* welcome.welcomeCardes */
@@ -288,7 +292,7 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    background-color: #fff9ec;
+    background-color: #fffafa;
     border: 0.2px solid red;
     display: flex;
     flex-direction: column;
@@ -313,6 +317,35 @@ body {
     transform: scale(1.04);
 }
 
+.infoBox ul li img {
+    justify-self: center;
+    align-self: center;
+    height: auto;
+    width: 90%;
+    position: relative;
+    top: 20%;
+    left: 5%;
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.infoBox ul li img.loaded {
+    opacity: 1;
+    transform: translateY(-5%);
+}
+
+.infoBox ul li .imgBack {
+    position: absolute;
+    height: auto;
+    width: 70%;
+    background: white;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
 .infoBox ul li p {
     position: absolute;
     bottom: 57px;
@@ -324,6 +357,30 @@ body {
     position: absolute;
     bottom: 30px;
     color: #5a3f3f;
+}
+
+/* Styling Poster Section*/
+.genImg {
+    margin-top: 60px;
+    height: auto;
+    width: 90%;
+    border-radius: 40px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.genImg.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.genImg img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Styling Working Sectio */
@@ -380,7 +437,7 @@ body {
 
 .faq ol li {
     height: 30px;
-    background-color: #fff3f3;
+    background-color: #fff9f9;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -464,3 +521,539 @@ footer ul li a {
     text-decoration: none;
     color: #666666;
 }
+
+/* Styling After SearchBtn Section */
+.searching {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(202, 165, 165);
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    background: white;
+    padding: 30px;
+    text-align: center;
+    transform: translateY(100%);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.searching .drawer {
+    background-color: rgba(171, 171, 171, 0.793);
+    position: absolute;
+    top: 5px;
+    border-radius: 12px;
+    font-size: 5px;
+    color: rgb(171, 171, 171);
+    cursor: pointer;
+}
+
+.searching .minimizer {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    font-size: 20px;
+    color: #646363;
+    cursor: pointer;
+}
+
+.searching .head1 {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    text-align: left;
+}
+
+.searching .head1 h3 {
+    padding-bottom: 5px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.searching .head1 h4 {
+    padding-bottom: 10px;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.searching .slidingBar {
+    position: absolute;
+    top: 80px;
+    width: 90%;
+    height: 40px;
+    border-radius: 12px;
+    margin: 5px 25px;
+    display: grid;
+    grid-column: auto;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgba(227, 226, 226, 0.793);
+    margin-top: 20px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.searching .slidingBar .slider {
+    position: absolute;
+    width: 50%;
+    height: 80%;
+    border-radius: 12px;
+    background-color: rgb(255, 54, 54);
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0%);
+    top: 10%;
+    left: 0;
+}
+
+.searching .slidingBar .byPinOption {
+    height: 80%;
+    border-radius: 12px;
+    margin: 0px 5px;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.searching .slidingBar .byAreaOption {
+    height: 80%;
+    border-radius: 12px;
+    margin: 0px 5px;
+    color: rgb(35, 35, 35);
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.searching .slidingBar .byAreaOption p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searching .byPincode {
+    position: absolute;
+    top: 125px;
+    left: 25px;
+    text-align: left;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.searching .byPincode p {
+    margin-top: 20px;
+    padding-top: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #999999;
+    padding-bottom: 10px;
+}
+
+.searching .byPincode input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 95%;
+    padding: 12px;
+    font-size: 17px;
+    font-family: sans-serif;
+    color: #333;
+    outline: none;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.searching .byPincode input:focus {
+    outline: none;
+    border-color: #ffadad;
+    box-shadow: 0 0 7px 3px rgba(255, 76, 76, 0.295);
+}
+
+.searching .byPincode input::placeholder {
+    color: #b6b5b5;
+}
+
+.byPincode .submitPin {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #ff3838;
+    margin: 15px 0px;
+    padding: 5px 0px;
+    border-radius: 12px;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+}
+
+.byPincode .submitPin p {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.byPincode .submitPin p img {
+    filter: invert(100%);
+    height: 20px;
+}
+
+.byPincode .submitPin:hover {
+    background-color: #fe1d1d;
+}
+
+/* Styling Popular Pincode Section */
+.byPincode .popularPin {
+    position: absolute;
+    top: 150;
+    text-align: left;
+}
+
+.byPincode .popularPin p {
+    margin-top: 20px;
+    padding-top: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #999999;
+    padding-bottom: 10px;
+}
+
+.byPincode .popularPin ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: left;
+    gap: 15px;
+    align-items: center;
+}
+
+.byPincode .popularPin ul li {
+    background-color: #e1e1e1;
+    padding: 5px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.byPincode .popularPin ul li:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: #fceaea;
+    color: #d92121;
+}
+
+.searching .byArea {
+    position: absolute;
+    top: 125px;
+    left: 25px;
+    text-align: left;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.searching .byArea p {
+    margin-top: 20px;
+    padding-top: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #999999;
+    padding-bottom: 10px;
+}
+
+.searching .byArea input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 95%;
+    padding: 12px;
+    font-size: 17px;
+    font-family: sans-serif;
+    color: #333;
+    outline: none;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.searching .byArea input:focus {
+    outline: none;
+    border-color: #ffadad;
+    box-shadow: 0 0 7px 3px rgba(255, 76, 76, 0.295);
+}
+
+.searching .byArea input::placeholder {
+    color: #b6b5b5;
+}
+
+.byArea .submitArea {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #ff3838;
+    margin: 15px 0px;
+    padding: 5px 0px;
+    border-radius: 12px;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+}
+
+
+.byArea .submitArea p {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.byArea .submitArea p img {
+    filter: invert(100%);
+    height: 20px;
+}
+
+.byArea .submitArea:hover {
+    background-color: #fe1d1d;
+}
+
+
+/* Styling Popular Area Section */
+.byArea .popularArea {
+    position: absolute;
+    top: 150;
+    text-align: left;
+}
+
+.byArea .popularArea p {
+    margin-top: 20px;
+    padding-top: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #999999;
+    padding-bottom: 10px;
+}
+
+.byArea .popularArea ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: left;
+    gap: 15px;
+    align-items: center;
+}
+
+.byArea .popularArea ul li {
+    background-color: #e1e1e1;
+    padding: 5px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.byArea .popularArea ul li:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: #fceaea;
+    color: #d92121;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(8px) brightness(0.6);
+    /* For Safari support */
+    backdrop-filter: blur(8px) brightness(0.6);
+}
+/*
+.afterSearching{
+    height: 100vh;
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    z-index: 1000000;
+}
+.afterSearching .result{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    gap: 15px;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-bottom: 1px solid #b1b1b1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000000;
+}
+.result .backSvg{
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.result .backSvg image{
+    padding: 2px;
+}
+.result .backSvg:hover{
+    background-color: #e8e8e8;
+}
+
+.result h3{
+    font-weight: 500;
+}
+.result h4 , #targetplace, #targetpin{
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.afterSearching .resultItem{
+    position: absolute;
+    padding: 15px;
+    background-color: #f2f2f2;
+    z-index: 100;
+    margin-top: 80px;
+    height: 100%;
+    width: 100vw;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+}
+
+.afterSearching .resultItem h4 {
+    display: flex;
+    justify-content: left;
+    align-self: center;
+    font-weight: 450;
+    color: #818181;
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.afterSearching .resultItem .resultContainer{
+    height: 35vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 15px;
+    border-left: 5px solid rgb(241, 67, 67);
+    padding: 2vw;
+    padding-top: 1vw;
+    margin-bottom: 25px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.afterSearching .resultItem .resultContainer h5{
+    font-weight: 450;
+    font-size: 15px;
+    padding-bottom: 6px;
+}
+.resultItem .resultContainer .properties{
+    display: flex;
+    list-style-type: none;
+    gap: 12px;
+    font-size: 11px;
+    margin: 5px 0px;
+}
+
+.resultContainer .properties .property1{
+    padding: 4px 6px;
+    background-color: #fceaea;
+    border-radius: 12px;
+    border: 0.5px solid rgb(255, 79, 79);
+    color: #B91C1C;
+}
+.resultContainer .properties .property2{
+    padding: 4px 6px;
+    border-radius: 12px;
+    border: 0.5px solid rgba(53, 26, 26, 0.25);
+}
+.resultContainer .properties .property3{
+    padding: 4px 6px;
+    background-color: #ebfcea;
+    border-radius: 12px;
+    border: 0.5px solid rgba(97, 255, 79, 0.208);
+    color: #0f7508;
+}
+
+.resultItem .resultContainer .officeDetail ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.resultItem .resultContainer .officeDetail{
+    padding-top: 30px;
+}
+.resultItem .resultContainer .officeDetail ul li{
+    width: 32.5%;
+    display: flex;
+    gap: 15px;
+    height: 48px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+.resultItem .resultContainer .officeDetail ul li svg{
+    padding: 5px;
+    background-color: #f6ecec;
+    height: 30px;
+    width: 28px;
+    border-radius: 8px;
+    stroke: #d92121;
+}
+.resultItem .resultContainer .officeDetail ul li .nameValue h4{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+.resultItem .resultContainer .officeDetail ul li .nameValue h4:last-child {
+    color: #585858;
+}
+
+.resultItem ul {
+    list-style-type: none;
+} 
+*/

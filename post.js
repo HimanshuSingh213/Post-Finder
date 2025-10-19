@@ -1,17 +1,78 @@
 let welcome = document.querySelector(".welcomeCard");
 let searchBtn = document.querySelector(".search");
-let bodyContent = document.querySelectorAll(".welcomeCard");
 let heading1 = document.querySelectorAll('h1');
 let faq = document.querySelectorAll(".faq ol li")
 let infoBoxItems = document.querySelectorAll(".infoBox ul li")
 let workingSection = document.querySelector(".working")
 let faqSection = document.querySelector(".faq")
+let genImgSection = document.querySelector(".genImg")
+let posterImg = document.querySelectorAll(".infoBox ul li img")
+let slider = document.querySelector(".slider");
+let byPincodeBtn = document.querySelector(".byPinOption");
+let byAreaBtn = document.querySelector(".byAreaOption");
+let locationPin = document.querySelector(".byAreaOption p span img");
+let searchByPincode = document.querySelector(".byPincode");
+let searchByArea = document.querySelector(".byArea");
+let searchNowBtn = document.querySelector(".search");
+let submitPin = document.querySelector(".submitPin");
+let submitArea = document.querySelector(".submitArea");
+let searchingSection = document.querySelector(".searching");
+let minimizer = document.querySelector(".minimizer");
+let pageContainer = document.querySelector(".page-container");
+let overlay = document.querySelector(".overlay");
+let PostOfficeName = document.querySelector(".postOffice");
+let type  = document.querySelector(".branchType");
+let circle = document.querySelector(".Circle");
+let district = document.querySelector(".district");
+let division = document.querySelector(".division");
+let pincode = document.querySelector(".pincode");
+let state = document.querySelector(".state");
+let inputPin = document.querySelector("#pincode");
+let inputArea = document.querySelector("#area");
+let targetPin = document.querySelectorAll(".targetPin");
+let branchType = document.querySelectorAll(".branchType");
+let deliveryStatus = document.querySelectorAll(".deliveryStatus");
+
+// let branchType = document.querySelectorAll(".branchType");
+// let branchType = document.querySelectorAll(".branchType");
+
+const getPin = async (officeCount) => {
+    let inputValue = inputPin.value;
+    let newURL = `https://api.postalpincode.in/pincode/${inputValue}`;
+    console.log('getting data...');
+    let Response = await fetch(newURL);
+    console.log(Response); //JSON format
+    let finalData = await Response.json();
+    return finalData.PostOffice[`${officeCount}`];
+}
+
+
+//     let officeCount = finalData.PostOffice.length;
+//     PostOffice.innerText = finalData[0].PostOffice[0].Name;
+
+//     type.innerText =finalData[0].PostOffice[0].BranchType;
+//     circle.innerText =finalData[0].PostOffice[0].Circle;
+//     district.innerText = finalData[0].PostOffice[0].District;
+//     division.innerText = finalData[0].PostOffice[0].Division;
+//     targetPin.forEach(targetPinEl => {
+//         targetPinEl.innerText = finalData[0].PostOffice[0].Pincode;
+        
+//     });
+//     state.innerText =  finalData[0].PostOffice[0].State;
+
+// searchPin.addEventListener("click" , getPin);
 
 document.addEventListener("DOMContentLoaded", () => {
+    window.scrollTo(0, 0);
+    
     if (welcome) {
         welcome.classList.add('loaded');
     }
 })
+
+window.addEventListener('load', () => {
+    window.scrollTo(0, 0);
+});
 
 // Intersection Observer for scroll-triggered animations
 const observerOptions = {
@@ -30,7 +91,9 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 infoBoxItems.forEach((item) => {
-    observer.observe(item);
+    setTimeout(() => {
+        observer.observe(item);
+    }, 250);
 });
 
 if (workingSection) {
@@ -38,6 +101,9 @@ if (workingSection) {
 }
 if (faqSection) {
     observer.observe(faqSection);
+}
+if (genImgSection) {
+    observer.observe(genImgSection);
 }
 welcome.addEventListener("mouseenter", () => {
     welcome.classList.add("hover-effect");
@@ -74,12 +140,12 @@ faq.forEach((faqItem) => {
         } else {
             plusIcon.style.transform = "rotate(180deg)";
         }
-       
-        if(ans.hidden === true){
+
+        if (ans.hidden === true) {
             faqItem.style.height = "70px"
-        setTimeout(() => {
-            ans.hidden = false;
-        }, 150);
+            setTimeout(() => {
+                ans.hidden = false;
+            }, 150);
 
         } else {
             faqItem.style.height = ""
@@ -89,3 +155,106 @@ faq.forEach((faqItem) => {
         }
     });
 });
+
+faq.forEach(faqItem => {
+    faqItem.addEventListener("mouseenter", () => {
+        faqItem.style.border = "1px solid red";
+    })
+
+    faqItem.addEventListener("mouseleave", () => {
+        faqItem.style.border = "";
+    })
+});
+
+const imgObserverOptions = {
+    threshold: 0.1, // Trigger when 10% of image is visible
+    rootMargin: '0px 0px -50px 0px' // Trigger 50px before image comes into view
+};
+
+const imgObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('loaded');
+            imgObserver.unobserve(entry.target);
+        }
+    });
+}, imgObserverOptions);
+
+// Apply observer to all infoBox images
+posterImg.forEach((imgElement) => {
+    imgObserver.observe(imgElement);
+});
+
+byPincodeBtn.addEventListener("click", () => {
+    slider.style.transform = "translateX(0%)";
+    setTimeout(() => {
+        if (byAreaBtn.style.color = "white") {
+            byAreaBtn.style.color = "rgb(35, 35, 35)";
+            byPincodeBtn.style.color = "white";
+            locationPin.style.filter = "";
+        }
+        searchByArea.hidden = true;
+        searchByPincode.hidden = false;
+    }, 200);
+});
+
+byAreaBtn.addEventListener("click", () => {
+    slider.style.transform = "translateX(100%)";
+    setTimeout(() => {
+        if (byPincodeBtn.style.color = "white") {
+            byPincodeBtn.style.color = "rgb(35, 35, 35)";
+            byAreaBtn.style.color = "white";
+            locationPin.style.filter = "invert(100%)";
+        }
+
+        searchByArea.hidden = false;
+        searchByPincode.hidden = true;
+    }, 200);
+});
+
+byPincodeBtn.addEventListener("click", () => {
+   
+});
+
+byAreaBtn.addEventListener("click", () => {
+    slider.style.transform = "translateX(100%)";
+});
+
+searchNowBtn.addEventListener("click" , () => {
+    searchingSection.style.transform = "translateY(0%)";
+    overlay.hidden = false;
+    overlay.style.opacity = "100%";
+    overlay.style.zIndex = "1000";
+})
+
+minimizer.addEventListener("click" , () => {
+    if(minimizer.style.transform === "Rotate(0deg)"){
+        minimizer.style.transform = "Rotate(180deg)"
+    } else {
+        minimizer.style.transform = "Rotate(0deg)";
+    }
+    searchingSection.style.transform = "translateY(100%)";
+    overlay.hidden = true;
+    overlay.style.opacity = "0%";
+    overlay.style.zIndex = "-1";
+})
+
+overlay.addEventListener("click", () =>{
+    if(minimizer.style.transform === "Rotate(0deg)"){
+        minimizer.style.transform = "Rotate(180deg)"
+    } else {
+        minimizer.style.transform = "Rotate(0deg)";
+    }
+    searchingSection.style.transform = "translateY(100%)";
+    overlay.hidden = true;
+    overlay.style.opacity = "0%";
+    overlay.style.zIndex = "-1";
+})
+
+submitPin.addEventListener("click", () => {
+    window.location.href = "post_Result.html";
+  });
+  
+  submitArea.addEventListener("click", () => {
+      window.location.href = "post_Result.html";
+    });
