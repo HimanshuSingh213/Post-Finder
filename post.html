@@ -228,25 +228,25 @@
                 </ul>
             </footer>
         </div>
-        <!-- <div class="afterSearching" >
+        <div class="afterSearching">
             <div class="result">
                 <div class="backSvg">
                     <img src="back-arrow-direction-down-right-left-up-svgrepo-com.svg" alt="" height="20px">
                 </div>
                 <div class="target">
                     <h3>Search Results</h3>
-                    <h4 hidden>Pincode: <p class="targetpin"></p>
+                    <h4 style="display: flex;">Pincode: &nbsp;<p class="targetpin">111111</p>
                     </h4>
-                    <h4>Area: <p class="targetplace"></p>
+                    <h4 style="display: flex;">Area: &nbsp;<p class="targetplace">delhi</p>
                     </h4>
 
                 </div>
             </div>
-            <div class="resultItem" >
+            <div class="resultItem">
 
                 <h4>Found&nbsp;<p id="postOfficeArray"></p>&nbsp;post offices</h4>
                 <ul>
-                    <li>
+                    <!-- <li>
                         <template class="resultContainer  resultContainer1">
 
                             <h5 id="postOfficeName">Connaught Place Head Post Office</h5>
@@ -362,10 +362,132 @@
                                 </ul>
                             </div>
                         </template>
-                    </li>
+                    </li> -->
+                    <template id="resultContainer">
+                        <li>
+                            <div class="resultContainer">
+                                <h5 class="postOfficeName">Post Office Name</h5>
+                                <ul class="properties">
+                                    <li class="targetpin property1">400001</li>
+                                    <li class="branchType property2">Head Post Office</li>
+                                    <li class="deliveryStatus property3">Delivery</li>
+                                </ul>
+                                <div class="officeDetail">
+                                    <ul>
+                                        <li>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-building2 lucide-building-2 w-4 h-4 text-red-600"
+                                                aria-hidden="true">
+                                                <path d="M10 12h4"></path>
+                                                <path d="M10 8h4"></path>
+                                                <path d="M14 21v-3a2 2 0 0 0-4 0v3"></path>
+                                                <path
+                                                    d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2">
+                                                </path>
+                                                <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+                                            </svg>
+                                            <div class="nameValue">
+                                                <h4>Branch Type</h4>
+                                                <h4 class="branchType value1 values">Head Post Office</h4>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-truck w-4 h-4 text-red-600" aria-hidden="true">
+                                                <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2">
+                                                </path>
+                                                <path d="M15 18H9"></path>
+                                                <path
+                                                    d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14">
+                                                </path>
+                                                <circle cx="17" cy="18" r="2"></circle>
+                                                <circle cx="7" cy="18" r="2"></circle>
+                                            </svg>
+                                            <div class="nameValue">
+                                                <h4>Delivery Status</h4>
+                                                <h4 class="deliveryStatus value2 values">Delivery</h4>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-globe w-4 h-4 text-red-600" aria-hidden="true">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                                <path d="M2 12h20"></path>
+                                            </svg>
+                                            <div class="nameValue">
+                                                <h4>Circle</h4>
+                                                <h4 class="circle value3 values ">Delhi</h4>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-map w-4 h-4 text-red-600" aria-hidden="true">
+                                                <path
+                                                    d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z">
+                                                </path>
+                                                <path d="M15 5.764v15"></path>
+                                                <path d="M9 3.236v15"></path>
+                                            </svg>
+                                            <div class="nameValue">
+                                                <h4>Region</h4>
+                                                <h4 class="region value4 values targetplace">Delhi</h4>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-box w-4 h-4 text-red-600" aria-hidden="true">
+                                                <path
+                                                    d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z">
+                                                </path>
+                                                <path d="m3.3 7 8.7 5 8.7-5"></path>
+                                                <path d="M12 22V12"></path>
+                                            </svg>
+                                            <div class="nameValue">
+                                                <h4>Division</h4>
+                                                <h4 class="division value5 values">New Delhi Central</h4>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-map-pinned w-4 h-4 text-red-600"
+                                                aria-hidden="true">
+                                                <path
+                                                    d="M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0">
+                                                </path>
+                                                <circle cx="12" cy="8" r="2"></circle>
+                                                <path
+                                                    d="M8.714 14h-3.71a1 1 0 0 0-.948.683l-2.004 6A1 1 0 0 0 3 22h18a1 1 0 0 0 .948-1.316l-2-6a1 1 0 0 0-.949-.684h-3.712">
+                                                </path>
+                                            </svg>
+                                            <div class="nameValue">
+                                                <h4>State</h4>
+                                                <h4 class="state value6 values">Delhi</h4>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
                 </ul>
             </div>
-        </div> -->
+        </div>
+        <div class="loadingIcon">
+            <img src="cloud loading svg.png" alt="">
+        </div>
     </div>
     <script src="post.js"></script>
 </body>

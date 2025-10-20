@@ -18,10 +18,13 @@ let submitPin = document.querySelector(".submitPin");
 let submitArea = document.querySelector(".submitArea");
 let searchingSection = document.querySelector(".searching");
 let minimizer = document.querySelector(".minimizer");
+let afterSearchingSection = document.querySelector(".afterSearching");
+let resultBackBtn = document.querySelector(".backSvg");
 let pageContainer = document.querySelector(".page-container");
 let overlay = document.querySelector(".overlay");
+let loadingIcon = document.querySelector(".loadingIcon");
 let PostOfficeName = document.querySelector(".postOffice");
-let type  = document.querySelector(".branchType");
+let type = document.querySelector(".branchType");
 let circle = document.querySelector(".Circle");
 let district = document.querySelector(".district");
 let division = document.querySelector(".division");
@@ -29,42 +32,136 @@ let pincode = document.querySelector(".pincode");
 let state = document.querySelector(".state");
 let inputPin = document.querySelector("#pincode");
 let inputArea = document.querySelector("#area");
-let targetPin = document.querySelectorAll(".targetPin");
+let targetPin = document.querySelectorAll(".targetpin");
+let targetPlace = document.querySelectorAll(".targetplace");
 let branchType = document.querySelectorAll(".branchType");
-let deliveryStatus = document.querySelectorAll(".deliveryStatus");
+let deliveryStatus = document.querySelectorAll(".property3");
+let resultContainer = document.querySelector(".resultContainer");
+let container = document.querySelector(".resultItem ul");
+let template = document.querySelector("#resultContainer");
+let property3 = document.querySelector(".deliveryStatus");
 
-// let branchType = document.querySelectorAll(".branchType");
-// let branchType = document.querySelectorAll(".branchType");
 
-const getPin = async (officeCount) => {
-    let inputValue = inputPin.value;
+const getOfficeCountPin = async () => {
+    let inputValue = inputPin.value.trim();
+    if (!inputValue) {
+        alert("Please enter a pincode!");
+        return;
+    }
+
     let newURL = `https://api.postalpincode.in/pincode/${inputValue}`;
-    console.log('getting data...');
-    let Response = await fetch(newURL);
-    console.log(Response); //JSON format
-    let finalData = await Response.json();
-    return finalData.PostOffice[`${officeCount}`];
-}
+
+    console.log("Getting data...");
+
+    try {
+        let Response = await fetch(newURL);
+        let finalData = await Response.json();
+
+        if (!finalData[0] || !finalData[0].PostOffice) {
+            alert("No results found for that pincode!");
+            return;
+        }
+
+        const offices = finalData[0].PostOffice;
+        // container.innerHTML = "";
+
+        document.getElementById("postOfficeArray").textContent = offices.length;
+        document.querySelector(".targetpin").textContent = offices[0].Pincode || inputValue;
 
 
-//     let officeCount = finalData.PostOffice.length;
-//     PostOffice.innerText = finalData[0].PostOffice[0].Name;
+        offices.forEach((office) => {
+            const clone = template.content.cloneNode(true);
 
-//     type.innerText =finalData[0].PostOffice[0].BranchType;
-//     circle.innerText =finalData[0].PostOffice[0].Circle;
-//     district.innerText = finalData[0].PostOffice[0].District;
-//     division.innerText = finalData[0].PostOffice[0].Division;
-//     targetPin.forEach(targetPinEl => {
-//         targetPinEl.innerText = finalData[0].PostOffice[0].Pincode;
-        
-//     });
-//     state.innerText =  finalData[0].PostOffice[0].State;
+            clone.querySelector("#postOfficeName").textContent = office.Name || "N/A";
+            clone.querySelector(".targetpin").textContent = office.Pincode || "N/A";
+            clone.querySelector(".branchType").textContent = office.BranchType || "N/A";
+            clone.querySelector(".deliveryStatus").textContent = office.DeliveryStatus || "N/A";
+            if (office.DeliveryStatus === "Non-Delivery") {
+                property3.innerText = "Non - Delivery"
+                property3.classList.add("nondelivery");
+            }
 
-// searchPin.addEventListener("click" , getPin);
+            const values = clone.querySelectorAll(".values");
+            if (values.length >= 6) {
+                values[0].textContent = office.BranchType || "N/A";
+                values[1].textContent = office.DeliveryStatus || "N/A";
+                values[2].textContent = office.Circle || "N/A";
+                values[3].textContent = office.Region || "N/A";
+                values[4].textContent = office.Division || "N/A";
+                values[5].textContent = office.State || "N/A";
+            }
+
+            container.appendChild(clone);
+        });
+
+    }
+     catch (err) {
+        console.error("Error fetching pincode data:", err);
+        alert("Something went wrong while fetching data.");
+    }
+
+};
+
+const getOfficeCountArea = async () => {
+    let inputValue = inputArea.value.trim();
+    if (!inputValue) {
+        alert("Please enter a Area/locality!");
+        return;
+    }
+    let newURL = `https://api.postalpincode.in/postoffice/${encodeURIComponent(inputValue)}`;
+
+
+    if (!finalData[0] || !finalData[0].PostOffice) {
+        alert("No results found for that area!");
+        return;
+    }
+
+    try {
+        let Response = await fetch(newURL);
+        let finalData = await Response.json();
+        const offices = finalData[0].PostOffice;
+        container.innerHTML = "";
+
+        document.getElementById("postOfficeArray").textContent = offices.length;
+        targetPlace.forEach(element => {
+            element.textContent = offices[0].Block || inputValue;
+            
+        });
+
+        offices.forEach((office) => {
+            const clone = template.content.cloneNode(true);
+
+            clone.querySelector("#postOfficeName").textContent = office.Name || "N/A";
+            clone.querySelector(".targetpin").textContent = office.Pincode || "N/A";
+            clone.querySelector(".branchType").textContent = office.BranchType || "N/A";
+            let deliveryStatus = clone.querySelector(".deliveryStatus");
+            deliveryStatus.textContent = office.DeliveryStatus || "N/A";
+            if (office.DeliveryStatus === "Non-Delivery") {
+                deliveryStatus.innerText = "Non - Delivery"
+                deliveryStatus.style.addClassList(".nondelivery");
+            }
+
+            const values = clone.querySelectorAll(".values");
+            values[0].textContent = office.BranchType || "N/A";
+            values[1].textContent = office.DeliveryStatus || "N/A";
+            values[2].textContent = office.Circle || "N/A";
+            values[3].textContent = office.Region || "N/A";
+            values[4].textContent = office.Division || "N/A";
+            values[5].textContent = office.State || "N/A";
+
+            container.appendChild(clone);
+        });
+    } catch (err) {
+        console.error("Error fetching Area data:", err);
+        alert("Something went wrong while fetching data.");
+    }
+};
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(0, 0);
-    
+
     if (welcome) {
         welcome.classList.add('loaded');
     }
@@ -210,25 +307,26 @@ byAreaBtn.addEventListener("click", () => {
         searchByArea.hidden = false;
         searchByPincode.hidden = true;
     }, 200);
+    inputPin.style.innerText = "";
 });
 
 byPincodeBtn.addEventListener("click", () => {
-   
+
 });
 
 byAreaBtn.addEventListener("click", () => {
     slider.style.transform = "translateX(100%)";
 });
 
-searchNowBtn.addEventListener("click" , () => {
+searchNowBtn.addEventListener("click", () => {
     searchingSection.style.transform = "translateY(0%)";
     overlay.hidden = false;
     overlay.style.opacity = "100%";
     overlay.style.zIndex = "1000";
 })
 
-minimizer.addEventListener("click" , () => {
-    if(minimizer.style.transform === "Rotate(0deg)"){
+minimizer.addEventListener("click", () => {
+    if (minimizer.style.transform === "Rotate(0deg)") {
         minimizer.style.transform = "Rotate(180deg)"
     } else {
         minimizer.style.transform = "Rotate(0deg)";
@@ -239,8 +337,8 @@ minimizer.addEventListener("click" , () => {
     overlay.style.zIndex = "-1";
 })
 
-overlay.addEventListener("click", () =>{
-    if(minimizer.style.transform === "Rotate(0deg)"){
+overlay.addEventListener("click", () => {
+    if (minimizer.style.transform === "Rotate(0deg)") {
         minimizer.style.transform = "Rotate(180deg)"
     } else {
         minimizer.style.transform = "Rotate(0deg)";
@@ -250,11 +348,47 @@ overlay.addEventListener("click", () =>{
     overlay.style.opacity = "0%";
     overlay.style.zIndex = "-1";
 })
+
 
 submitPin.addEventListener("click", () => {
-    window.location.href = "post_Result.html";
-  });
-  
-  submitArea.addEventListener("click", () => {
-      window.location.href = "post_Result.html";
-    });
+    if (inputPin.value !== "") {
+        loadingIcon.style.zIndex = "1001"
+        loadingIcon.style.visibility = "visible";
+        loadingIcon.style.opacity = 1;
+        
+        setTimeout(() => {
+            loadingIcon.style.visibility = "hidden";
+            loadingIcon.style.opacity = 0;
+            loadingIcon.style.zIndex = ""
+            afterSearchingSection.style.transform = "translateY(0%)";
+        }, 4000);
+    }
+    targetPin.forEach(targets => targets.hidden = false);
+    targetPlace.forEach(targets => targets.hidden = true);
+    getOfficeCountPin();
+    inputPin.value = "";
+});
+
+submitArea.addEventListener("click", () => {
+    if (inputArea.value !== "") {
+        loadingIcon.style.zIndex = "1001"
+        loadingIcon.style.visibility = "visible";
+        loadingIcon.style.opacity = 1;
+        
+        setTimeout(() => {
+            loadingIcon.style.visibility = "hidden";
+            loadingIcon.style.opacity = 0;
+            loadingIcon.style.zIndex = "";
+            afterSearchingSection.style.transform = "translateY(0%)";
+        }, 4000);
+    }
+    targetPin.forEach(targets => targets.hidden = true);
+    targetPlace.forEach(targets => targets.hidden = false);
+    getOfficeCountArea();
+    inputArea.value = "";
+
+});
+
+resultBackBtn.addEventListener("click", () => {
+    afterSearchingSection.style.transform = "translateY(100%)"
+});
