@@ -38,6 +38,7 @@ let branchType = document.querySelectorAll(".branchType");
 let deliveryStatus = document.querySelectorAll(".property3");
 let resultContainer = document.querySelector(".resultContainer");
 let container = document.querySelector(".resultItem ul");
+let resultItem = document.querySelector(".afterSearching .resultItem");
 let template = document.querySelector("#resultContainer");
 let property3 = document.querySelector(".deliveryStatus");
 let popularArea = document.querySelectorAll(".popularArea ul li");
@@ -477,6 +478,9 @@ resultBackBtn.addEventListener("click", () => {
     afterSearchingSection.style.transform = "translateY(100%)"
     document.body.classList.remove("no-scroll");
     html.classList.remove("no-scroll");
+    if (resultItem) resultItem.scrollTo({
+         top: 0, behavior: "instant" 
+        });
 });
 
 popularArea.forEach(element => {
