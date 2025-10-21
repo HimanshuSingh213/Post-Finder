@@ -17,23 +17,20 @@ body {
     outline: 0 !important;
     vertical-align: baseline !important;
 }
-
-html {
-    height: 100%;
+html{
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
-
 body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
     width: 100%;
     position: relative;
+    scroll-behavior: smooth;
     overflow-x: hidden;
 }
 
-/* Container for flex layout */
 .page-container {
     display: flex;
     align-items: center;
@@ -114,20 +111,19 @@ body {
 .navbar ul li {
     display: flex;
     flex-direction: row;
-
+    cursor: pointer;
 }
 
-.navbar ul li a span {
+.navbar ul li  span {
     font-size: 20px;
 }
 
-.navbar ul li a {
-    text-decoration: none;
+.navbar ul li {
     color: #999999;
     font-size: 15px;
 }
 
-.navbar ul li a:hover {
+.navbar ul li:hover {
     font-weight: 700;
 }
 
@@ -515,10 +511,7 @@ footer ul {
 footer ul li {
     display: block;
     padding: 3px;
-}
-
-footer ul li a {
-    text-decoration: none;
+    cursor: pointer;
     color: #666666;
 }
 
@@ -890,7 +883,7 @@ footer ul li a {
     height: 100vh;
     z-index: -1;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+    transition: all 0.5s ease-in-out, visibility 0.5s;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -900,18 +893,27 @@ footer ul li a {
     backdrop-filter: blur(8px) brightness(0.6);
 }
 
+
+body.no-scroll {
+    overflow: hidden; 
+}
+html.no-scroll{
+    overflow: hidden;
+}
+
 .afterSearching{
-    height: 100vh;
+    height: 100%;
     width: 100%;
+    inset: 0;     
     background-color: white;
     position: fixed;
     transform: translateY(100%);
     transition: all 0.2s ease-in-out;
-    z-index: 1000000;
+    z-index: 1200;
 }
 .afterSearching .result{
     width: 100%;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     display: flex;
@@ -923,7 +925,7 @@ footer ul li a {
     padding: 20px;
     border-bottom: 1px solid #b1b1b1;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000000;
+    z-index: 1;
 }
 .result .backSvg{
     height: 25px;
@@ -949,17 +951,33 @@ footer ul li a {
     font-size: 13px;
 }
 
+.afterSearching .resultItem::-webkit-scrollbar {
+    width: 10px; 
+}
+.afterSearching .resultItem::-webkit-scrollbar-track {
+    background: #ffd8d8; 
+    height: 100%;
+    margin-bottom: 108px;
+} 
+.afterSearching .resultItem::-webkit-scrollbar-thumb {
+  background: #ff4d4d;
+  border-radius: 8px;
+}
+.afterSearching .resultItem::-webkit-scrollbar-thumb:hover {
+    background: #d9a300; 
+}
+
+
 .afterSearching .resultItem{
     position: absolute;
-    padding: 15px;
+    padding: 0px 4.5%;
     background-color: #f2f2f2;
     z-index: 100;
-    margin-top: 80px;
-    height: 100%;
+    height: 100vh;
+    pointer-events: auto;
     width: 100vw;
-    padding-left: 4.5%;
-    padding-right: 4.5%;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .afterSearching .resultItem h4 {
@@ -973,7 +991,7 @@ footer ul li a {
     margin-top: 20px;
 }
 .afterSearching .resultItem .resultContainer{
-    height: 35vh;
+    height: 250px;
     width: 90vw;
     background-color: white;
     border-radius: 15px;
@@ -983,6 +1001,10 @@ footer ul li a {
     margin-bottom: 25px;
     display: inline-block;
     overflow: hidden;
+}
+
+.afterSearching .resultItem .resultContainer:last-child{
+    margin-bottom: 120px;
 }
 
 .afterSearching .resultItem .resultContainer h5{
@@ -1064,9 +1086,6 @@ footer ul li a {
     color: #585858;
 }
 
-.resultItem ul {
-    list-style-type: none;
-} 
 
 .loadingIcon{
     position: fixed;
@@ -1090,5 +1109,49 @@ footer ul li a {
     border-radius: 20px;
     width: 80px;
     height: 80px;
-    /* transition: opacity 0.6s ease-in-out; */
+}
+
+.backToTop{
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    padding: 5px;
+    background-color: #fa0000ad;
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+.backToTop img{
+    height: 100%;
+    width: 100%;
+    filter: invert(1);
+}
+
+.backToTop:hover{
+    background-color: #ff6d6d;
+}
+
+.searchNowBtn{
+    position: fixed;
+    bottom: 70px;
+    right: 25px;
+    padding: 10px;
+    background-color: #fa0000ad;
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.searchNowBtn img{
+    height: 100%;
+    width: 100%;
+    filter: invert(1);
+}
+
+.searchNowBtn:hover{
+    background-color: #ff6d6d;
 }

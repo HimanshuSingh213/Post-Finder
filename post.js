@@ -40,13 +40,21 @@ let resultContainer = document.querySelector(".resultContainer");
 let container = document.querySelector(".resultItem ul");
 let template = document.querySelector("#resultContainer");
 let property3 = document.querySelector(".deliveryStatus");
+let popularArea = document.querySelectorAll(".popularArea ul li");
+let popularPin = document.querySelectorAll(".popularPin ul li");
+let navbarItems = document.querySelectorAll(".navbar ul li");
+let footerAbout = document.querySelectorAll("footer .footerAbout li");
+let footerContact = document.querySelectorAll("footer .footerContact li");
+let html = document.querySelector("html");
+let fixedSearchBtn = document.querySelector(".searchNowBtn");
+let backToTop = document.querySelector(".backToTop");
 
 
 const getOfficeCountPin = async () => {
     let inputValue = inputPin.value.trim();
     if (!inputValue) {
         alert("Please enter a pincode!");
-        return;
+        return 0;
     }
 
     let newURL = `https://api.postalpincode.in/pincode/${inputValue}`;
@@ -57,32 +65,55 @@ const getOfficeCountPin = async () => {
         let Response = await fetch(newURL);
         let finalData = await Response.json();
 
-        if (!finalData[0] || !finalData[0].PostOffice) {
+        if (!Array.isArray(finalData) || !finalData[0] || !Array.isArray(finalData[0].PostOffice) || finalData[0].PostOffice.length === 0) {
             alert("No results found for that pincode!");
-            return;
+            return 0;
         }
 
         const offices = finalData[0].PostOffice;
-        // container.innerHTML = "";
+        if (offices.length === 0) {
+            return 0;
+        }
+        container.innerHTML = "";
 
-        document.getElementById("postOfficeArray").textContent = offices.length;
-        document.querySelector(".targetpin").textContent = offices[0].Pincode || inputValue;
+        
 
+        const postOfficeNum = document.getElementById("postOfficeArray");
+        if (postOfficeNum) postOfficeNum.textContent = String(offices.length);
+        const headerPin = document.querySelector(".targetpin");
+        if (headerPin) headerPin.textContent = offices[0].Pincode || inputValue;
+
+        const headerPlaceNames = document.querySelectorAll(".targetplace");
+        const headerPlaceText = offices[0].Block || offices[0].District || "";
+        headerPlaceNames.forEach((el) => (el.textContent = headerPlaceText));
 
         offices.forEach((office) => {
             const clone = template.content.cloneNode(true);
+            
+            const nameNode = clone.querySelector(".postOfficeName");
+            if (nameNode) nameNode.textContent = office.Name || "N/A";
+            console.log(office.Name);
 
-            clone.querySelector("#postOfficeName").textContent = office.Name || "N/A";
-            clone.querySelector(".targetpin").textContent = office.Pincode || "N/A";
-            clone.querySelector(".branchType").textContent = office.BranchType || "N/A";
-            clone.querySelector(".deliveryStatus").textContent = office.DeliveryStatus || "N/A";
-            if (office.DeliveryStatus === "Non-Delivery") {
-                property3.innerText = "Non - Delivery"
-                property3.classList.add("nondelivery");
+            const pinNode = clone.querySelector(".targetpin");
+            if (pinNode) pinNode.textContent = office.Pincode || "N/A";
+
+            const branchNode = clone.querySelector(".branchType");
+            if (branchNode) branchNode.textContent = office.BranchType || "N/A";
+
+            const deliveryNode = clone.querySelector(".deliveryStatus");
+            if (deliveryNode) {
+                const deliveryStatus = office.DeliveryStatus || "N/A";
+                deliveryNode.textContent = deliveryStatus;
+                if (deliveryStatus === "Non-Delivery") {
+                    deliveryNode.textContent = "Non - Delivery";
+                    deliveryNode.classList.add("nondelivery");
+                } else {
+                    deliveryNode.classList.remove("nondelivery");
+                }
             }
 
             const values = clone.querySelectorAll(".values");
-            if (values.length >= 6) {
+            if (values && values.length >= 6) {
                 values[0].textContent = office.BranchType || "N/A";
                 values[1].textContent = office.DeliveryStatus || "N/A";
                 values[2].textContent = office.Circle || "N/A";
@@ -90,74 +121,99 @@ const getOfficeCountPin = async () => {
                 values[4].textContent = office.Division || "N/A";
                 values[5].textContent = office.State || "N/A";
             }
+        
 
             container.appendChild(clone);
         });
 
     }
-     catch (err) {
+    catch (err) {
         console.error("Error fetching pincode data:", err);
         alert("Something went wrong while fetching data.");
+        return 0;
     }
-
+   
 };
 
 const getOfficeCountArea = async () => {
-    let inputValue = inputArea.value.trim();
+
+    const inputValue = (inputArea?.value || "").trim();
     if (!inputValue) {
-        alert("Please enter a Area/locality!");
-        return;
+      alert("Please enter a Area/locality!");
+      return 0;
     }
-    let newURL = `https://api.postalpincode.in/postoffice/${encodeURIComponent(inputValue)}`;
-
-
-    if (!finalData[0] || !finalData[0].PostOffice) {
-        alert("No results found for that area!");
-        return;
-    }
-
+  
+    const newURL = `https://api.postalpincode.in/postoffice/${encodeURIComponent(inputValue)}`;
+  
     try {
-        let Response = await fetch(newURL);
-        let finalData = await Response.json();
-        const offices = finalData[0].PostOffice;
-        container.innerHTML = "";
+      const Response = await fetch(newURL);
+      const finalData = await Response.json();
+  
+      if (!Array.isArray(finalData) || !finalData[0] || !Array.isArray(finalData[0].PostOffice) || finalData[0].PostOffice.length === 0) {
+        alert("No results found for that area!");
+        return 0;
+      }
+  
+      const offices = finalData[0].PostOffice;
+      if (offices.length === 0) {
+            return 0;
+      }
+      container.innerHTML = "";
+  
+      const postOfficeNames = document.getElementById("postOfficeArray");
+      if (postOfficeNames) postOfficeNames.textContent = String(offices.length);
+  
+      targetPlace.forEach((el) => {
+        el.textContent = offices[0].Block || offices[0].District || inputValue;
+      });
+  
+      const headerPin = document.querySelector(".targetpin");
+      if (headerPin) headerPin.textContent = offices[0].Pincode || "";
+  
+      offices.forEach((office) => {
+        const clone = template.content.cloneNode(true);
+  
+        const nameNode = clone.querySelector(".postOfficeName");
+        if (nameNode) nameNode.textContent = office.Name || "N/A";    
+        console.log(office.Name);
 
-        document.getElementById("postOfficeArray").textContent = offices.length;
-        targetPlace.forEach(element => {
-            element.textContent = offices[0].Block || inputValue;
-            
-        });
-
-        offices.forEach((office) => {
-            const clone = template.content.cloneNode(true);
-
-            clone.querySelector("#postOfficeName").textContent = office.Name || "N/A";
-            clone.querySelector(".targetpin").textContent = office.Pincode || "N/A";
-            clone.querySelector(".branchType").textContent = office.BranchType || "N/A";
-            let deliveryStatus = clone.querySelector(".deliveryStatus");
-            deliveryStatus.textContent = office.DeliveryStatus || "N/A";
-            if (office.DeliveryStatus === "Non-Delivery") {
-                deliveryStatus.innerText = "Non - Delivery"
-                deliveryStatus.style.addClassList(".nondelivery");
-            }
-
-            const values = clone.querySelectorAll(".values");
-            values[0].textContent = office.BranchType || "N/A";
-            values[1].textContent = office.DeliveryStatus || "N/A";
-            values[2].textContent = office.Circle || "N/A";
-            values[3].textContent = office.Region || "N/A";
-            values[4].textContent = office.Division || "N/A";
-            values[5].textContent = office.State || "N/A";
-
-            container.appendChild(clone);
-        });
+        const pinNode = clone.querySelector(".targetpin");
+        if (pinNode) pinNode.textContent = office.Pincode || "N/A";
+  
+        const branchNode = clone.querySelector(".branchType");
+        if (branchNode) branchNode.textContent = office.BranchType || "N/A";
+  
+        const deliveryNode = clone.querySelector(".deliveryStatus");
+        if (deliveryNode) {
+          const ds = office.DeliveryStatus || "N/A";
+          deliveryNode.textContent = ds;
+          if (ds === "Non-Delivery") {
+            deliveryNode.textContent = "Non - Delivery";
+            deliveryNode.classList.add("nondelivery");
+          } else {
+            deliveryNode.classList.remove("nondelivery");
+          }
+        }
+  
+        const values = clone.querySelectorAll(".values");
+        if (values && values.length >= 6) {
+          values[0].textContent = office.BranchType || "N/A";
+          values[1].textContent = office.DeliveryStatus || "N/A";
+          values[2].textContent = office.Circle || "N/A";
+          values[3].textContent = office.Region || "N/A";
+          values[4].textContent = office.Division || "N/A";
+          values[5].textContent = office.State || "N/A";
+        }
+  
+        container.appendChild(clone);
+      });
     } catch (err) {
-        console.error("Error fetching Area data:", err);
-        alert("Something went wrong while fetching data.");
+      console.error("Error fetching Area data:", err);
+      alert("Something went wrong while fetching data.");
+      return 0;
     }
+
 };
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(0, 0);
@@ -165,11 +221,32 @@ document.addEventListener("DOMContentLoaded", () => {
     if (welcome) {
         welcome.classList.add('loaded');
     }
-})
+});
 
 window.addEventListener('load', () => {
     window.scrollTo(0, 0);
 });
+
+navbarItems[0].addEventListener("click" , () => {
+    window.scrollTo(0,0);
+});
+
+navbarItems[1].addEventListener("click" , () => {
+    window.scrollTo(0,0);
+});
+
+navbarItems[2].addEventListener("click" , () => {
+    window.scrollTo(0,1150);
+});
+
+navbarItems[3].addEventListener("click" , () => {
+    window.scrollTo(0,2300);
+});
+
+navbarItems[4].addEventListener("click" , () => {
+    window.scrollTo(0,2300);
+});
+
 
 // Intersection Observer for scroll-triggered animations
 const observerOptions = {
@@ -251,15 +328,12 @@ faq.forEach((faqItem) => {
             }, 150);
         }
     });
-});
-
-faq.forEach(faqItem => {
     faqItem.addEventListener("mouseenter", () => {
-        faqItem.style.border = "1px solid red";
+        faqItem.style.border = "1.2px solid red";
     })
 
     faqItem.addEventListener("mouseleave", () => {
-        faqItem.style.border = "";
+        faqItem.style.border = "0.6px solid red";
     })
 });
 
@@ -281,6 +355,7 @@ const imgObserver = new IntersectionObserver((entries) => {
 posterImg.forEach((imgElement) => {
     imgObserver.observe(imgElement);
 });
+
 
 byPincodeBtn.addEventListener("click", () => {
     slider.style.transform = "translateX(0%)";
@@ -323,7 +398,8 @@ searchNowBtn.addEventListener("click", () => {
     overlay.hidden = false;
     overlay.style.opacity = "100%";
     overlay.style.zIndex = "1000";
-})
+});
+
 
 minimizer.addEventListener("click", () => {
     if (minimizer.style.transform === "Rotate(0deg)") {
@@ -333,9 +409,13 @@ minimizer.addEventListener("click", () => {
     }
     searchingSection.style.transform = "translateY(100%)";
     overlay.hidden = true;
-    overlay.style.opacity = "0%";
     overlay.style.zIndex = "-1";
-})
+    overlay.style.opacity = "0%";
+    setTimeout(() => {
+        inputArea.value = "";
+        inputPin.value = "";
+    }, 200);
+});
 
 overlay.addEventListener("click", () => {
     if (minimizer.style.transform === "Rotate(0deg)") {
@@ -350,45 +430,97 @@ overlay.addEventListener("click", () => {
 })
 
 
-submitPin.addEventListener("click", () => {
-    if (inputPin.value !== "") {
+submitPin.addEventListener("click", async () => {
+    const count = await getOfficeCountPin();
+    if (inputPin.value !== "" && count !== 0) {
         loadingIcon.style.zIndex = "1001"
         loadingIcon.style.visibility = "visible";
         loadingIcon.style.opacity = 1;
-        
-        setTimeout(() => {
-            loadingIcon.style.visibility = "hidden";
-            loadingIcon.style.opacity = 0;
-            loadingIcon.style.zIndex = ""
-            afterSearchingSection.style.transform = "translateY(0%)";
-        }, 4000);
-    }
-    targetPin.forEach(targets => targets.hidden = false);
-    targetPlace.forEach(targets => targets.hidden = true);
-    getOfficeCountPin();
-    inputPin.value = "";
-});
 
-submitArea.addEventListener("click", () => {
-    if (inputArea.value !== "") {
-        loadingIcon.style.zIndex = "1001"
-        loadingIcon.style.visibility = "visible";
-        loadingIcon.style.opacity = 1;
-        
         setTimeout(() => {
             loadingIcon.style.visibility = "hidden";
             loadingIcon.style.opacity = 0;
             loadingIcon.style.zIndex = "";
             afterSearchingSection.style.transform = "translateY(0%)";
-        }, 4000);
+            document.body.classList.add("no-scroll");
+            html.classList.add("no-scroll");
+        }, 3000);
     }
-    targetPin.forEach(targets => targets.hidden = true);
-    targetPlace.forEach(targets => targets.hidden = false);
-    getOfficeCountArea();
+    targetPin.hidden = false;
+    targetPlace.hidden = true;
+    inputPin.value = "";
+});
+
+submitArea.addEventListener("click", async () => {
+    const count = await getOfficeCountArea();
+    if (inputArea.value !== "" && count !== 0) {
+        loadingIcon.style.zIndex = "1001"
+        loadingIcon.style.visibility = "visible";
+        loadingIcon.style.opacity = 1;
+
+        setTimeout(() => {
+            loadingIcon.style.visibility = "hidden";
+            loadingIcon.style.opacity = 0;
+            loadingIcon.style.zIndex = "";
+            afterSearchingSection.style.transform = "translateY(0%)";
+            document.body.classList.add("no-scroll");
+            html.classList.add("no-scroll");
+        }, 3000);
+    }
+    targetPin.hidden = true;
+    targetPlace.hidden = false;
     inputArea.value = "";
 
 });
 
 resultBackBtn.addEventListener("click", () => {
     afterSearchingSection.style.transform = "translateY(100%)"
+    document.body.classList.remove("no-scroll");
+    html.classList.remove("no-scroll");
+});
+
+popularArea.forEach(element => {
+    element.addEventListener("click", () => {
+        inputArea.value = element.innerText;
+    })
+});
+
+popularPin.forEach(element => {
+    element.addEventListener("click", () => {
+        inputPin.value = element.innerText;
+    })
+});
+
+footerAbout[0].addEventListener("click", () => {
+    window.scrollTo(0,1150);
+});
+
+footerAbout[1].addEventListener("click", () => {
+    window.scrollTo(0,1300);
+});
+
+footerAbout[2].addEventListener("click", () => {
+    window.scrollTo(0,2300);
+});
+
+
+fixedSearchBtn.addEventListener("click", () => {
+    searchingSection.style.transform = "translateY(0%)";
+    overlay.hidden = false;
+    overlay.style.opacity = "100%";
+    overlay.style.zIndex = "1000";
+});
+
+backToTop.addEventListener("click", () => {
+    window.scrollTo(0,0);
+})
+window.addEventListener("scroll" , () => {
+    if (window.pageYOffset >= 200) {
+        fixedSearchBtn.style.opacity = "1";
+        backToTop.style.opacity = "1";
+    }
+    else{
+        fixedSearchBtn.style.opacity = "0";
+        backToTop.style.opacity = "0";
+    }
 });
