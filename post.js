@@ -1,74 +1,74 @@
-let welcome = document.querySelector(".welcomeCard");
-let section1 = document.querySelector(".section1");
-let searchBtn = document.querySelector(".search");
-let heading1 = document.querySelectorAll('h1');
-let faq = document.querySelectorAll(".faq ol li")
-let infoBoxItems = document.querySelectorAll(".infoBox ul li")
-let workingSection = document.querySelector(".working")
-let faqSection = document.querySelector(".faq")
-let genImgSection = document.querySelector(".genImg")
-let posterImg = document.querySelectorAll(".infoBox ul li img")
-let slider = document.querySelector(".slider");
-let byPincodeBtn = document.querySelector(".byPinOption");
-let byAreaBtn = document.querySelector(".byAreaOption");
-let locationPin = document.querySelector(".byAreaOption p span img");
-let searchByPincode = document.querySelector(".byPincode");
-let searchByArea = document.querySelector(".byArea");
-let searchNowBtn = document.querySelector(".search");
-let submitPin = document.querySelector(".submitPin");
-let submitArea = document.querySelector(".submitArea");
-let searchingSection = document.querySelector(".searching");
-let minimizer = document.querySelector(".minimizer");
-let afterSearchingSection = document.querySelector(".afterSearching");
-let resultBackBtn = document.querySelector(".backSvg");
-let pageContainer = document.querySelector(".page-container");
-let overlay = document.querySelector(".overlay");
-let loadingIcon = document.querySelector(".loadingIcon");
-let PostOfficeName = document.querySelector(".postOffice");
-let type = document.querySelector(".branchType");
-let circle = document.querySelector(".Circle");
-let district = document.querySelector(".district");
-let division = document.querySelector(".division");
-let pincode = document.querySelector(".pincode");
-let state = document.querySelector(".state");
-let inputPin = document.querySelector("#pincode");
-let inputArea = document.querySelector("#area");
-let targetPin = document.querySelectorAll(".targetpin");
-let targetPlace = document.querySelectorAll(".targetplace");
-let branchType = document.querySelectorAll(".branchType");
-let deliveryStatus = document.querySelectorAll(".property3");
-let resultContainer = document.querySelectorAll(".resultContainer");
-let container = document.querySelector(".resultItem ul");
-let resultItem = document.querySelector(".afterSearching .resultItem");
-let template = document.querySelector("#resultContainer");
-let property3 = document.querySelector(".deliveryStatus");
-let popularArea = document.querySelectorAll(".popularArea ul li");
-let popularPin = document.querySelectorAll(".popularPin ul li");
-let navbarItems = document.querySelectorAll(".navbar ul li");
-let footerAbout = document.querySelectorAll("footer .footerAbout li");
-let footerContact = document.querySelectorAll("footer .footerContact li");
-let html = document.querySelector("html");
-let fixedSearchBtn = document.querySelector(".searchNowBtn");
-let backToTop = document.querySelector(".backToTop");
-let themeChanger = document.querySelector(".themeChanger");
-let themes = document.querySelectorAll(".themeChanger img");
-let darkTheme = themes[0];
-let lightTheme = themes[1];
+const welcome = document.querySelector(".welcomeCard");
+const section1 = document.querySelector(".section1");
+const searchBtn = document.querySelector(".search");
+const heading1 = document.querySelectorAll('h1');
+const faq = document.querySelectorAll(".faq ol li");
+const infoBoxItems = document.querySelectorAll(".infoBox ul li");
+const workingSection = document.querySelector(".working");
+const faqSection = document.querySelector(".faq");
+const genImgSection = document.querySelector(".genImg");
+const posterImg = document.querySelectorAll(".infoBox ul li img");
+const slider = document.querySelector(".slider");
+const byPincodeBtn = document.querySelector(".byPinOption");
+const byAreaBtn = document.querySelector(".byAreaOption");
+const locationPin = document.querySelector(".byAreaOption p span img");
+const searchByPincode = document.querySelector(".byPincode");
+const searchByArea = document.querySelector(".byArea");
+const searchNowBtn = document.querySelector(".search");
+const submitPin = document.querySelector(".submitPin");
+const submitArea = document.querySelector(".submitArea");
+const searchingSection = document.querySelector(".searching");
+const minimizer = document.querySelector(".minimizer");
+const afterSearchingSection = document.querySelector(".afterSearching");
+const resultBackBtn = document.querySelector(".backSvg");
+const pageContainer = document.querySelector(".page-container");
+const overlay = document.querySelector(".overlay");
+const loadingIcon = document.querySelector(".loadingIcon");
+const PostOfficeName = document.querySelector(".postOffice");
+const type = document.querySelector(".branchType");
+const circle = document.querySelector(".Circle");
+const district = document.querySelector(".district");
+const division = document.querySelector(".division");
+const pincode = document.querySelector(".pincode");
+const state = document.querySelector(".state");
+const inputPin = document.querySelector("#pincode");
+const inputArea = document.querySelector("#area");
+const targetPin = document.querySelectorAll(".targetpin");
+const targetPlace = document.querySelectorAll(".targetplace");
+const branchType = document.querySelectorAll(".branchType");
+const deliveryStatus = document.querySelectorAll(".property3");
+const resultContainer = document.querySelectorAll(".resultContainer");
+const container = document.querySelector(".resultItem ul");
+const resultItem = document.querySelector(".afterSearching .resultItem");
+const template = document.querySelector("#resultContainer");
+const property3 = document.querySelector(".deliveryStatus");
+const popularArea = document.querySelectorAll(".popularArea ul li");
+const popularPin = document.querySelectorAll(".popularPin ul li");
+const navbarItems = document.querySelectorAll(".navbar ul li");
+const footerAbout = document.querySelectorAll("footer .footerAbout li");
+const footerContact = document.querySelectorAll("footer .footerContact li");
+const html = document.querySelector("html");
+const fixedSearchBtn = document.querySelector(".searchNowBtn");
+const backToTop = document.querySelector(".backToTop");
+const themeChanger = document.querySelector(".themeChanger");
+const themes = document.querySelectorAll(".themeChanger img");
+const darkTheme = themes[0];
+const lightTheme = themes[1];
 
 const getOfficeCountPin = async () => {
-    let inputValue = inputPin.value.trim();
+    const inputValue = inputPin.value.trim();
     if (!inputValue) {
         alert("Please enter a pincode!");
         return 0;
     }
 
-    let newURL = `https://api.postalpincode.in/pincode/${inputValue}`;
+    const newURL = `https://api.postalpincode.in/pincode/${inputValue}`;
 
     console.log("Getting data...");
 
     try {
-        let Response = await fetch(newURL);
-        let finalData = await Response.json();
+        const Response = await fetch(newURL);
+        const finalData = await Response.json();
 
         if (!Array.isArray(finalData) || !finalData[0] || !Array.isArray(finalData[0].PostOffice) || finalData[0].PostOffice.length === 0) {
             alert("No results found for that pincode!");
@@ -325,8 +325,8 @@ faq.forEach((faqItem) => {
             plusIcon.style.transform = "rotate(180deg)";
         }
 
-        if (ans.hidden === true) {
-            faqItem.style.height = "70px"
+        if ((ans.hidden === true)) {
+            faqItem.style.height = "12vh"
             setTimeout(() => {
                 ans.hidden = false;
             }, 150);
@@ -520,23 +520,29 @@ footerAbout[2].addEventListener("click", () => {
 });
 
 
-fixedSearchBtn.addEventListener("click", () => {
-    searchingSection.style.transform = "translateY(0%)";
-    overlay.hidden = false;
-    overlay.style.opacity = "100%";
-    overlay.style.zIndex = "1000";
-});
-
 backToTop.addEventListener("click", () => {
     window.scrollTo(0, 0);
 })
 window.addEventListener("scroll", () => {
     if (window.pageYOffset >= 200) {
         fixedSearchBtn.style.opacity = "1";
+        fixedSearchBtn.style.cursor = "pointer";
+        fixedSearchBtn.addEventListener("click", () => {
+            searchingSection.style.transform = "translateY(0%)";
+            overlay.hidden = false;
+            overlay.style.opacity = "100%";
+            overlay.style.zIndex = "1000";
+        });
+        backToTop.addEventListener("click", () => {
+            window.scrollTo(0, 0);
+        })
+        backToTop.style.cursor = "pointer";
         backToTop.style.opacity = "1";
     }
     else {
         fixedSearchBtn.style.opacity = "0";
+        fixedSearchBtn.style.cursor = "default";
+        backToTop.style.cursor = "default";
         backToTop.style.opacity = "0";
     }
 });
@@ -568,6 +574,7 @@ const targetH4 = document.querySelectorAll(".result .target h4");
 const targetH3 = document.querySelector(".result .target h3");
 const resultItemH4 = document.querySelector(".resultItem h4");
 const nameValue = document.querySelectorAll(".resultContainer .officeDetail ul li .nameValue");
+const watermark = document.querySelector(".watermark");
 
 // Setting Theme Changer 
 themeChanger.addEventListener("click", () => {
@@ -577,15 +584,13 @@ themeChanger.addEventListener("click", () => {
             lightTheme.style.opacity = 0;
             darkTheme.style.opacity = 1;
             section1.style.backgroundColor = "";
-            navbarItem[0].style.backgroundColor = "";
-            navbarItem[0].style.padding = "";
-            navbarItem[0].style.borderRadius = "";
             pageContainer.style.backgroundColor = "";
             howH1.style.color = "";
             howP.style.color = "";
             faqH1.style.color = "";
             infoBoxItems.forEach(items => {
                 items.style.backgroundColor = "";
+                items.style.boxShadow = "none";
             });
             infoBoxItemsPara.forEach(items => {
                 items.style.color = ""
@@ -601,11 +606,11 @@ themeChanger.addEventListener("click", () => {
             welcomeSecondH1.style.color = "";
             infoBoxItems.forEach(item => {
                 item.addEventListener("mouseenter", () => {
-                    item.style.boxShadow = "";
+                    item.style.border = "";
                 });
 
                 item.addEventListener("mouseleave", () => {
-                    item.style.boxShadow = "";
+                    item.style.border = "";
                 });
             });
             faq.forEach(items => {
@@ -672,8 +677,6 @@ themeChanger.addEventListener("click", () => {
                 element.style.color = "";
             });
             popularArea.forEach(element => {
-
-
                 element.addEventListener("mouseenter", () => {
                     element.style.backgroundColor = "";
                     element.style.color = "";
@@ -687,8 +690,6 @@ themeChanger.addEventListener("click", () => {
             });
 
             popularPin.forEach(element => {
-
-
                 element.addEventListener("mouseenter", () => {
                     element.style.backgroundColor = "";
                     element.style.color = "";
@@ -716,40 +717,37 @@ themeChanger.addEventListener("click", () => {
         else {
             darkTheme.style.opacity = 0;
             lightTheme.style.opacity = 1;
-            section1.style.backgroundColor = "rgb(6 20 57 / 95%)";
-            navbarItem[0].style.backgroundColor = "white";
-            navbarItem[0].style.padding = "5px 8px";
-            navbarItem[0].style.borderRadius = "8px";
-            pageContainer.style.backgroundColor = "rgb(2 15 33 / 98%)";
+            section1.style.backgroundColor = "#111827";
+            pageContainer.style.backgroundColor = "#030712";
             howH1.style.color = "white";
             howP.style.color = "white";
             faqH1.style.color = "white";
             infoBoxItems.forEach(items => {
-                items.style.backgroundColor = "rgb(7 26 56 / 77%)";
+                items.style.backgroundColor = "#101828";
+                items.style.boxShadow = "none";
             });
             infoBoxItemsPara.forEach(items => {
-                items.style.color = "white"
+                items.style.color = "#99a1af"
             });
             infoBoxItemsH3.forEach(items => {
-                items.style.color = "white"
+                items.style.color = "#f6f3f4"
             });
-            welcome.classList.add('inverted');
             welcome.style.background = "url('Assets/Images-SVG/background-img2.jpg')";
-            footer.style.backgroundColor = "rgb(6 20 57 / 95%)";
+            footer.style.backgroundColor = "#111827";
             footerAboutH4.style.color = "#ffffffde";
             footerContactH4.style.color = "#ffffffde";
             welcomeSecondH1.style.color = "white";
             infoBoxItems.forEach(item => {
                 item.addEventListener("mouseenter", () => {
-                    item.style.boxShadow = "0 0 20px 5px rgba(4, 2, 103, 0.68)";
+                    item.style.border = "3px solid red";
                 });
 
                 item.addEventListener("mouseleave", () => {
-                    item.style.boxShadow = "";
+                    item.style.border = "";
                 });
             });
             faq.forEach(items => {
-                items.style.backgroundColor = "rgb(7 26 56 / 77%)";
+                items.style.backgroundColor = "#101828";
             });
             faqQuestion.forEach(items => {
                 items.style.filter = "invert(100%)";
@@ -842,7 +840,7 @@ themeChanger.addEventListener("click", () => {
             resultItemH4.style.color = "#e5e7eb";
 
             document.documentElement.classList.toggle('dark');
-            
+
         }
     }, 200);
 })

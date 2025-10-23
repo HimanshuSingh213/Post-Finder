@@ -97,10 +97,10 @@ body {
     justify-content: center;
     width: 80%;
     height: 64px;
-    /* background: rgba(255, 255, 255, 0.78); */
     border-image: linear-gradient(90deg, #ff6a00, #ff0066) 1;
     z-index: 100;
 }
+
 
 .navbar ul {
     display: flex;
@@ -120,9 +120,23 @@ body {
     font-size: 20px;
 }
 
+
+html.dark .navbar ul li {
+    color: #ebe6e7;
+}
+
 .navbar ul li {
     color: #999999;
     font-size: 15px;
+}
+
+html.dark .navbar ul li:hover {
+    transition: all 0.2s ease-in-out;
+    color: #f87171;
+}
+
+.navbar .menu-icon {
+    display: none;
 }
 
 .navbar ul li:hover {
@@ -134,6 +148,10 @@ body {
     font-weight: 700;
     font-size: 18px;
     position: relative;
+}
+
+.navbar .navbar-dropdown{
+    display: none;
 }
 
 /* Styling Welcome Card */
@@ -156,35 +174,13 @@ body {
 }
 
 
-
-/* .welcomeCard.inverted::before,.welcomeCard.inverted::after,
-.welcomeCard.inverted span::before,
-.welcomeCard.inverted span::after {
-    border-color:  rgb(0, 142, 171);
-  }
-
-  .welcomeCard.hover-effect.inverted::before,
-  .welcomeCard.hover-effect.inverted::after,
-  .welcomeCard.hover-effect.inverted span::before,
-  .welcomeCard.hover-effect.inverted span::after {
-      width: 70px;
-      height: 45px;
-      border-color:rgb(0, 142, 171);
-  }
-  
-  .welcomeCard.hover-effect.inverted:active::before,
-  .welcomeCard.hover-effect.inverted:active::after,
-  .welcomeCard.hover-effect.inverted span:active::before,
-  .welcomeCard.hover-effect.inverted span:active::after {
-      width: 70px;
-      height: 45px;
-      border-color:rgb(0, 142, 171);
-  } */
-
-
 .welcomeCard.loaded {
     opacity: 1;
     transform: translateY(0);
+}
+
+html.dark .welcomeCard h1:nth-child(2) {
+    color: #ff2f2f;
 }
 
 .welcomeCard h1:nth-child(2) {
@@ -342,12 +338,6 @@ body {
     transform: scale(1.04);
 }
 
-.infoBox ul li.dark:hover {
-    transition: 0.4s ease-in-out;
-    border: 0.4px solid red;
-    box-shadow: 0 0 20px 5px rgba(4, 0, 255, 0.2);
-    transform: scale(1.04);
-}
 
 .infoBox ul li img {
     justify-self: center;
@@ -410,6 +400,7 @@ body {
 
 .genImg img {
     width: 100%;
+    height: 100%;
     height: auto;
     object-fit: cover;
     object-position: center;
@@ -484,13 +475,14 @@ body {
     position: relative;
 }
 
+
 .faq ol li .q {
     display: flex;
     align-items: center;
     transition: 0.3s ease-in-out;
     gap: 20px;
     position: absolute;
-    top: 5px;
+    top: 3px;
 }
 
 .faq ol li .ans {
@@ -551,6 +543,25 @@ footer ul li {
     color: #666666;
 }
 
+html.dark footer ul li {
+    color: #ebe6e792
+}
+
+.page-container .watermark {
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 13px;
+    padding-bottom: 10px;
+    background-color: #fdf3f3;
+    color: rgba(0, 0, 0, 0.885);
+}
+
+html.dark .page-container .watermark{
+    background-color: #111827;
+    color: rgba(255, 255, 255, 0.885);
+
+}
 /* Styling After SearchBtn Section */
 .searching {
     position: fixed;
@@ -775,8 +786,8 @@ footer ul li {
 }
 
 .byPincode .popularPin ul {
-    list-style-type: none;
     display: flex;
+    list-style-type: none;
     justify-content: left;
     gap: 15px;
     align-items: center;
@@ -817,7 +828,6 @@ footer ul li {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-
     width: 95%;
     padding: 12px;
     font-size: 17px;
@@ -1019,7 +1029,7 @@ html.no-scroll {
 }
 
 .afterSearching .resultItem::-webkit-scrollbar-thumb:hover {
-    background: #d9a300;
+    background: #ff4d4d;
 }
 
 
@@ -1065,7 +1075,7 @@ html.dark .afterSearching .resultContainer {
     box-shadow: none;
 }
 
-html.dark .resultContainer .postOfficeName{
+html.dark .resultContainer .postOfficeName {
     color: #f9fafb;
 }
 
@@ -1149,7 +1159,7 @@ html.dark .resultContainer .postOfficeName{
     stroke: #d92121;
 }
 
-html.dark .resultItem .resultContainer .officeDetail ul li svg{
+html.dark .resultItem .resultContainer .officeDetail ul li svg {
     background-color: #450a0a;
     stroke: #f87171;
 }
@@ -1162,24 +1172,26 @@ html.dark .resultContainer .officeDetail ul li .nameValue h4 {
     color: #9ca3af;
 }
 
-html.dark .resultContainer .properties .property1{
+html.dark .resultContainer .properties .property1 {
     background-color: #450a0a8e;
     color: #ff4d4d;
     font-weight: 600;
     border-color: #7f1d1d;
 }
-html.dark .resultContainer .properties .property2{
+
+html.dark .resultContainer .properties .property2 {
     background-color: #1f293790;
     color: #e5e7eb;
     border-color: #374151;
 }
-html.dark .resultContainer .properties .property3{
+
+html.dark .resultContainer .properties .property3 {
     background-color: #052e1693;
     color: #4ade80;
     border-color: #14532d;
 }
 
-html.dark .resultContainer .properties .property3.nondelivery{
+html.dark .resultContainer .properties .property3.nondelivery {
     background-color: #431407;
     color: #fb923c;
     border-color: #7c2d12;
@@ -1217,6 +1229,7 @@ html.dark .resultContainer .properties .property3.nondelivery{
     border-radius: 20px;
     width: 80px;
     height: 80px;
+    animation: up-down 1.5s infinite;
 }
 
 .backToTop {
@@ -1280,7 +1293,6 @@ html.dark .resultContainer .properties .property3.nondelivery{
     opacity: 0;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
-    animation: up-down 3s infinite;
 }
 
 .themeChanger img {
@@ -1290,7 +1302,6 @@ html.dark .resultContainer .properties .property3.nondelivery{
     left: 6.5px;
     bottom: 6.5px;
     right: 6.5px;
-    /* filter: invert(1); */
     position: absolute;
 }
 
@@ -1298,11 +1309,13 @@ html.dark .resultContainer .properties .property3.nondelivery{
     opacity: 0;
 }
 
-.themeChanger:hover {
+@media (hover: hover) and (pointer: fine) {
+  .themeChanger:hover {
     background-color: #edebebcb;
+  }
 }
 
-/* 
+
 @keyframes up-down {
     0% {
         transform: translateY(0);
@@ -1315,7 +1328,8 @@ html.dark .resultContainer .properties .property3.nondelivery{
     100% {
         transform: translateY(0);
     }
-} */
+}
+
 .resultContainer {
     transition: all 0.3s ease-in-out;
 }
